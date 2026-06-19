@@ -1,0 +1,6 @@
+# Ignore ai-service virtual environment
+ai-service/myenv/
+
+# Ignore backend dependencies
+backend/vendor
+backend/.env
