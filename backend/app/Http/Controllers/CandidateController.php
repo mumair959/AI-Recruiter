@@ -109,6 +109,14 @@ class CandidateController extends Controller
                     'parsed_resume' => $parsed['text'],
                     'email' => $parsed['email'],
                     'phone' => $parsed['phone'],
+                    'skills'=> $parsed['skills'],
+                    'education'=> $parsed['education'],
+                    'experience'=> $parsed['experience'],
+                    'ai_summary' => $parsed['summary'],
+                    'seniority' => $parsed['seniority'],
+                    'strengths' => $parsed['strengths'],
+                    'recommended_roles' => $parsed['recommended_roles'],
+                    'experience_years' => $parsed['experience_years'] ?? 0,
                 ]
             );
 

@@ -4,6 +4,8 @@ from fastapi import File
 import os
 
 from app.services.resume_parser import ResumeParser
+from app.services.resume_analyzer import ResumeAnalyzer
+from app.services.candidate_ai import CandidateAI
 
 router = APIRouter()
 
@@ -20,10 +22,16 @@ async def parse_resume(file: UploadFile = File(...)):
     with open(temp_path, "wb") as f:
         f.write(await file.read())
 
-    result = ResumeParser.parse_resume(
-        temp_path
-    )
+    result = ResumeParser.parse_resume(temp_path)
 
+    analysis = ResumeAnalyzer.analyze(result["text"])
+
+    result.update(analysis)
+
+    insights = CandidateAI.generate_insights(result["text"])
+
+    result.update(insights)
+    
     if os.path.exists(temp_path):
         os.remove(temp_path)
 

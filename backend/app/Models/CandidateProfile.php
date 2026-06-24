@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class CandidateProfile extends Model
 {
@@ -14,13 +15,19 @@ class CandidateProfile extends Model
         'parsed_resume',
         'email',
         'phone',
-        'ai_summary'
+        'ai_summary',
+        'strengths',
+        'recommended_roles',
+        'seniority',
+        'experience_years'
     ];
 
     protected $casts = [
         'skills' => 'array',
         'education' => 'array',
         'experience' => 'array',
+        'strengths' => 'array',
+        'recommended_roles' => 'array',
     ];
 
     public function candidate()

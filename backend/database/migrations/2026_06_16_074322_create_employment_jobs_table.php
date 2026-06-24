@@ -20,6 +20,10 @@ return new class extends Migration
             $table->text('description');
             $table->text('requirements')->nullable();
             $table->enum('status', ['Draft', 'Open', 'Closed'])->default('Draft');
+            $table->json('required_skills')->nullable();
+            $table->json('preferred_skills')->nullable();
+            $table->integer('min_experience')->nullable();
+            $table->string('seniority')->nullable();
             $table->timestamps();
         });
     }

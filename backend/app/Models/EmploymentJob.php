@@ -13,7 +13,16 @@ class EmploymentJob extends Model
         'experience_years',
         'description',
         'requirements',
-        'status'
+        'status',
+        'required_skills',
+        'preferred_skills',
+        'min_experience',
+        'seniority'
+    ];
+
+    protected $casts = [
+        'required_skills' => 'array',
+        'preferred_skills' => 'array',
     ];
 
     public function applications()

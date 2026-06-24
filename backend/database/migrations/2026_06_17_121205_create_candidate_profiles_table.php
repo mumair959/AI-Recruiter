@@ -17,10 +17,14 @@ return new class extends Migration
             $table->json('skills')->nullable();
             $table->json('education')->nullable();
             $table->json('experience')->nullable();
+            $table->integer('experience_years')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->longText('parsed_resume')->nullable();
             $table->text('ai_summary')->nullable();
+            $table->string('seniority')->nullable();
+            $table->json('strengths')->nullable();
+            $table->json('recommended_roles')->nullable();
             $table->timestamps();
         });
     }

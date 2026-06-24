@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\EmploymentJob;
 use Illuminate\Http\Request;
+use App\Services\AIService;
+use DB;
 
 class EmploymentJobController extends Controller
 {
@@ -25,9 +27,22 @@ class EmploymentJobController extends Controller
             'description' => 'required'
         ]);
 
-        $job = EmploymentJob::create($request->all());
+        return DB::transaction(function () use ($request) {
+            $job = EmploymentJob::create($request->all());
 
-        return response()->json($job);
+            $ai = app(AIService::class);
+    
+            $analysis = $ai->analyzeJob($job->title, $job->description, $job->requirements);
+
+            $job->update([
+                'required_skills' => $analysis['required_skills'],
+                'preferred_skills' => $analysis['preferred_skills'],
+                'min_experience' => $analysis['min_experience'],
+                'seniority' => $analysis['seniority'],
+            ]);
+            return response()->json($job);
+        });
+
     }
 
     /**
