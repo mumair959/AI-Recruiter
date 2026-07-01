@@ -42,7 +42,8 @@ class CandidateController extends Controller
         $candidate = Candidate::findOrFail($id);
 
         return $candidate->load([
-            'applications.job'
+            'applications.job',
+            'profile'
         ]);
     }
 
