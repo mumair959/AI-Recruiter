@@ -34,4 +34,8 @@ class EmploymentJob extends Model
     {
         return $this->belongsToMany(Candidate::class,'applications');
     }
+
+    public function matches() {
+        return $this->hasMany( CandidateMatch::class, 'employment_job_id');
+    }
 }

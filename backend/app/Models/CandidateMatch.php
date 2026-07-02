@@ -31,6 +31,6 @@ class CandidateMatch extends Model
 
     public function employmentJob()
     {
-        return $this->belongsTo(EmploymentJob::class);
+        return $this->belongsTo(EmploymentJob::class, 'employment_job_id');
     }
 }

@@ -21,6 +21,7 @@ import CreateJobPage from "../pages/jobs/CreateJobPage";
 import JobDetailsPage from "../pages/jobs/JobDetailsPage";
 import CreateCandidatePage from "../pages/candidates/CreateCandidatePage";
 import CandidateDetailsPage from "../pages/candidates/CandidateDetailsPage";
+import JobMatchesPage from "../pages/jobs/JobMatchesPage";
 
 export default function AppRouter() {
 
@@ -90,6 +91,11 @@ export default function AppRouter() {
           <Route
             path="candidates/:id"
             element={<CandidateDetailsPage />}
+          />
+
+          <Route
+            path="/jobs/:id/matches"
+            element={<JobMatchesPage />}
           />
 
           <Route

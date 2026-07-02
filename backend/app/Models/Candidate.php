@@ -28,4 +28,8 @@ class Candidate extends Model
     {
         return $this->hasOne(CandidateProfile::class);
     }
+
+    public function matches(){
+        return $this->hasMany(CandidateMatch::class);
+    }
 }

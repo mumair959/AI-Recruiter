@@ -24,4 +24,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/applications/{application}/notes', [ApplicationController::class, 'addNote']);
 
     Route::post('/jobs/{job}/match/{candidate}', [CandidateMatchController::class, 'match']);
+    Route::get('jobs/{job}/matches', [CandidateMatchController::class, 'index']);
 });

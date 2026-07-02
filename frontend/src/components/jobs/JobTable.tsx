@@ -47,9 +47,15 @@ export default function JobTable({jobs}:Props){
                 <TableCell>
                     <Link
                         to={`/jobs/${job.id}`}
-                        className="px-4 py-2 bg-blue-600 text-white rounded"
+                        className="px-4 py-2 m-2 bg-blue-600 text-white rounded"
                     >
                         Details
+                    </Link>
+                    <Link
+                        to={`/jobs/${job.id}/matches`}
+                        className="px-4 py-2 bg-green-600 text-white rounded"
+                    >
+                        AI Matches
                     </Link>
                 </TableCell>
 
