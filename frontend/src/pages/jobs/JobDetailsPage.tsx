@@ -3,10 +3,14 @@ import { useParams } from "react-router-dom";
 import { useJob } from "../../hooks/jobs/useJob";
 
 import JobAnalysisCard from "../../components/jobs/JobAnalysisCard";
+import { useState } from "react";
+import { Button } from "../../components/ui/button";
+import ApplyCandidateDialog from "../../components/applications/ApplyCandidateDialog";
 
 export default function JobDetailsPage() {
     const { id } = useParams();
     const {data: job, isLoading, error} = useJob(Number(id));
+    const [open, setOpen] = useState(false);
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -21,6 +25,11 @@ export default function JobDetailsPage() {
         <div className="space-y-8">
 
             <div className="border rounded-lg p-6">
+                <div className="flex justify-end">
+                <Button onClick={() => setOpen(true)}>
+                    Apply Candidate
+                </Button>
+                </div>
 
                 <h1 className="text-3xl font-bold">
                     {job.title}
@@ -98,6 +107,15 @@ export default function JobDetailsPage() {
 
             <JobAnalysisCard job={job} />
 
+            <ApplyCandidateDialog
+
+                open={open}
+
+                onOpenChange={setOpen}
+
+                jobId={job.id}
+
+            />
         </div>
 
     );

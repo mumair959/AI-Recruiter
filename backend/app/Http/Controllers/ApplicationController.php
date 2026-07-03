@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\ApplicationActivity;
+use App\Services\AIService;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\CandidateMatchController as CandidateMatchingController;
 
 class ApplicationController extends Controller
 {
@@ -17,7 +19,7 @@ class ApplicationController extends Controller
     {
         return Application::with([
             'candidate',
-            'employmentjob'
+            'employmentJob'
         ])->latest()->paginate();
     }
 
@@ -42,6 +44,14 @@ class ApplicationController extends Controller
                 'application_id' => $application->id,
                 'event' => 'Application Created'
             ]);
+
+            $matchingController = app(CandidateMatchingController::class);
+
+            $matchingController->createMatch(
+                $application->employmentJob,
+                $application->candidate,
+                app(AIService::class)
+            );
 
             return response()->json(
                 $application,
@@ -107,7 +117,12 @@ class ApplicationController extends Controller
             ]
         ]);
 
-        return $application;
+        $application->load([
+            'candidate',
+            'employmentJob',
+        ]);
+
+        return response()->json($application);
     }
 
     public function addNote( Request $request, Application $application)

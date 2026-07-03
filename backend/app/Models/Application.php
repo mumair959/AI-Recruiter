@@ -12,8 +12,20 @@ class Application extends Model
         'status',
         'applied_at'
     ];
-    
-    public function employmentjob()
+
+    protected $appends = [
+        'candidate_match',
+    ];
+
+    public function getCandidateMatchAttribute()
+    {
+        return CandidateMatch::query()
+            ->where('candidate_id', $this->candidate_id)
+            ->where('employment_job_id', $this->employment_job_id)
+            ->first();
+    }
+
+    public function employmentJob()
     {
         return $this->belongsTo(EmploymentJob::class, 'employment_job_id');
     }
@@ -32,4 +44,5 @@ class Application extends Model
     {
         return $this->hasMany(ApplicationNote::class);
     }
+
 }

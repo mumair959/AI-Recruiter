@@ -10,5 +10,10 @@ export interface CandidateMatch {
     experience_match: boolean;
     seniority_match: boolean;
     recommendation: string;
+    summary: string | null;
+    strengths: string[];
+    weaknesses: string[];
+    red_flags: string[];
+    confidence: number | null;
     candidate: Candidate;
 }

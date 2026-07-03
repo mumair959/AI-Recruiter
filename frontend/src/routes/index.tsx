@@ -15,13 +15,14 @@ import RegisterPage from "../pages/RegisterPage";
 import DashboardPage from "../pages/DashboardPage";
 import JobsPage from "../pages/jobs/JobsPage";
 import CandidatesPage from "../pages/candidates/CandidatesPage";
-import ApplicationsPage from "../pages/ApplicationsPage";
 import MatchesPage from "../pages/MatchesPage";
 import CreateJobPage from "../pages/jobs/CreateJobPage";
 import JobDetailsPage from "../pages/jobs/JobDetailsPage";
 import CreateCandidatePage from "../pages/candidates/CreateCandidatePage";
 import CandidateDetailsPage from "../pages/candidates/CandidateDetailsPage";
 import JobMatchesPage from "../pages/jobs/JobMatchesPage";
+import ApplicationsPage from "../pages/applications/ApplicationsPage";
+import ApplicationDetailsPage from "../pages/applications/ApplicationDetailsPage";
 
 export default function AppRouter() {
 
@@ -101,6 +102,11 @@ export default function AppRouter() {
           <Route
             path="applications"
             element={<ApplicationsPage />}
+          />
+
+          <Route
+            path="/applications/:id"
+              element={<ApplicationDetailsPage />}
           />
 
           <Route

@@ -21,6 +21,11 @@ return new class extends Migration
             $table->text('recommendation')->nullable();
             $table->boolean('experience_match')->default(false);
             $table->boolean('seniority_match')->default(false);
+            $table->text('summary')->nullable();
+            $table->json('strengths')->nullable();
+            $table->json('weaknesses')->nullable();
+            $table->json('red_flags')->nullable();
+            $table->decimal('confidence',5,2)->nullable();
             $table->timestamps();
         });
     }

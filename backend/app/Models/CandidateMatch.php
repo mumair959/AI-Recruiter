@@ -14,12 +14,20 @@ class CandidateMatch extends Model
         'missing_skills',
         'recommendation',
         'experience_match',
-        'seniority_match'
+        'seniority_match',
+        'summary',
+        'confidence',
+        'strengths',
+        'weaknesses',
+        'red_flags',
     ];
 
     protected $casts = [
         'matched_skills' => 'array',
         'missing_skills' => 'array',
+        'strengths' => 'array',
+        'weaknesses' => 'array',
+        'red_flags' => 'array',
         'experience_match'=>'boolean',
         'seniority_match'=>'boolean'
     ];
