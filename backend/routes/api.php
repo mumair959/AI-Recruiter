@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\CandidateMatchController;
 use App\Http\Controllers\EmploymentJobController;
+use App\Http\Controllers\InterviewQuestionController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -25,4 +26,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/jobs/{job}/match/{candidate}', [CandidateMatchController::class, 'match']);
     Route::get('jobs/{job}/matches', [CandidateMatchController::class, 'index']);
+
+    Route::get("/applications/{application}/interview-questions", [InterviewQuestionController::class, "show"]);
+    Route::post("/applications/{application}/interview-questions", [InterviewQuestionController::class, "generate"]);
 });

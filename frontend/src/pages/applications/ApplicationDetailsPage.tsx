@@ -3,21 +3,20 @@ import { Button } from "../../components/ui/button";
 import { useUpdateApplicationStatus } from "../../hooks/applications/useUpdateApplicationStatus";
 import { useApplication } from "../../hooks/applications/useApplication";
 import AIAnalysisCard from "../../components/applications/AIAnalysisCard";
+import InterviewQuestionCard from "../../components/interviews/InterviewQuestionCard";
+import { useInterviewQuestions } from "../../hooks/interviews/useInterviewQuestions";
+import { useGenerateInterviewQuestions } from "../../hooks/interviews/useGenerateInterviewQuestions";
 
 export default function ApplicationDetailsPage() {
 
     const { id } = useParams();
     const updateStatus = useUpdateApplicationStatus();
 
-    const {
+    const { data: application, isLoading, error} = useApplication(Number(id));
 
-        data: application,
+    const {data: interview} = useInterviewQuestions(application?.id);
 
-        isLoading,
-
-        error,
-
-    } = useApplication(Number(id));
+    const generateInterview = useGenerateInterviewQuestions();
 
     if (isLoading) {
 
@@ -102,6 +101,18 @@ export default function ApplicationDetailsPage() {
 
             <AIAnalysisCard
                 match={application.candidate_match}
+            />
+
+            <InterviewQuestionCard
+
+                interview={interview}
+
+                isGenerating={generateInterview.isPending}
+
+                onGenerate={() =>
+                    generateInterview.mutate(application.id)
+                }
+
             />
 
         </div>

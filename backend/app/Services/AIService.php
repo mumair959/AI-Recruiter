@@ -51,4 +51,17 @@ class AIService
             ->post(config('ai.ai_service_url'). '/api/recommendation/generate', $matchData)
             ->json();
     }
+
+    public function generateInterviewQuestions(array $candidate, array $job, array $match) {
+        return Http::timeout(180)
+            ->post(
+                config('ai.ai_service_url').'/api/interview/generate',
+                [
+                    'candidate'=>$candidate,
+                    'job'=>$job,
+                    'match' => $match,
+                ]
+            )
+            ->json();    
+    }
 }

@@ -45,4 +45,8 @@ class Application extends Model
         return $this->hasMany(ApplicationNote::class);
     }
 
+    public function interviewQuestion()
+    {
+        return $this->hasOne(InterviewQuestion::class);
+    }
 }
